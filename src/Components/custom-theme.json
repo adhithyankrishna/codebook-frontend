@@ -1,0 +1,18 @@
+{
+  "name": "Custom Theme",
+  "base": "vs-dark", 
+  "colors": {
+    "editor.background": "red",
+    "editor.foreground": "#fff"
+  },
+  "rules": [
+    {
+      "scope": "keyword",
+      "settings": {
+        "fontStyle": "bold",
+        "foreground": "#ff9800"
+      }
+    }
+    
+  ]
+}

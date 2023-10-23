@@ -1,0 +1,113 @@
+/* App.css */
+
+/* Landing Page */
+
+.LandingPage {
+  background-color: transparent;
+}
+
+.NavBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.NavBar button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: x-large;
+  padding: 2%;
+  margin-left: 1%;
+}
+
+.LoginButton {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50%;
+  width: 20%;
+  
+}
+
+.LoginButton button {
+  text-align:center;
+  color: rgb(114, 243, 9);
+  margin: 10%;
+  
+}
+
+.title{
+  font-family: monospace;
+  font-size: 15dvh;
+  color: rgb(114, 243, 9);
+  white-space: pre;
+  padding: 1%;
+  margin-left: 18%;
+}
+
+.Ide{
+  width: 90vw;
+  height: 80vh;
+  padding: 1%;
+  outline: none;
+  border: none;
+  border-radius: 24px;
+  background-color: rgba(52, 54, 64, 1);
+}
+
+.Scribble{
+  color: rgb(255,255,255);
+}
+
+.s-title{
+  font-size: 5dvh;
+  text-align: center;
+}
+
+.Scribble-l{
+  margin-top: 15%;
+  padding: 1%;
+}
+.ide-box{
+  padding: 2%;
+}
+.function{
+  background-color: rgba(8, 15, 77, 1);
+  height: 5vh;
+  width: 100%;
+
+  display: flex;
+justify-content: flex-end;
+  
+}
+
+.function button{
+  border: none;
+  font-size: x-large;
+  height: 100%;
+
+  background-color: rgb(114, 243, 9);
+}
+
+.function select{
+  height: 100%;
+  font-size: x-large;
+   background-color: rgb(114, 243, 9);
+    
+}
+
+
+.Ide-boxM{
+  background-color: rgba(52, 54, 64, 1);
+  border-radius: 24px;
+}
+
+
+.terminal{
+  background-color: rgba(52, 54, 64, 1);
+  width: 100%;
+  white-space: pre;
+  resize: both;
+  overflow: auto;
+  color: white;
+}
