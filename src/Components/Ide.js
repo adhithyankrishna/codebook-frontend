@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Editor from "@monaco-editor/react";
 import { io } from "socket.io-client";
 import ConsoleEmulator from "react-console-emulator";
+import Terminal from "./Terminal";
+
 
 const Ide = () => {
   const defaultCodeSnippet = {
@@ -16,13 +18,17 @@ const Ide = () => {
       usage: "echo <string>",
       fn: (...args) => args.join(" "),
     },
+   
 
     about: {
       description: "To know about us ...",
       fn: () =>
         "<<<<<<<<<<<<<<<<<<this is online code editor for developer and creater >>>>>>>>>>>>>>>>>>>>>>\n<<<<<<<<<<<<<<<<.............................................................>>>>>>>>>>>>>>>>",
     },
+    
+
   };
+  
 
   const editorRef = useRef();
   const [language, setLanguage] = useState("java");
@@ -30,6 +36,8 @@ const Ide = () => {
   const [currentCode, setCurrentCode] = useState(defaultCode);
   const [output, setOutput] = useState("$serve");
   const [clientId, setClientId] = useState(null);
+  const [newText, setNewText] = useState("");
+  const [inputText, setInputText] = useState("");
 
   const socket = io("http://localhost:3001");
 
@@ -43,6 +51,8 @@ const Ide = () => {
   useEffect(() => {
     setClientId(generateUniqueId());
   }, []);
+
+  
 
   useEffect(() => {
     console.log("HAI");
@@ -82,7 +92,12 @@ const Ide = () => {
   const handleChange = (newCode) => {
     setCurrentCode(newCode);
   };
-  
+
+  const handleterminal = (e) => {
+    console.log(inputText+"nkn");
+    setNewText(`${newText}\nUser Input: ${e}`);
+    setInputText("");
+  };
 
   return (
     <div className="Ide-boxM">
@@ -102,14 +117,11 @@ const Ide = () => {
         theme="vs-dark"
         onMount={(editor, monaco) => {
           editorRef.current = editor;
-        }}
+        }}  
         onChange={handleChange}
       />
-      <ConsoleEmulator
-        commands={commands}
-
-        promptLabel={"Codebook$"}
-      />
+      <Terminal/>
+      
     </div>
   );
 };
