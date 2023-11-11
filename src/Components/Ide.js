@@ -4,7 +4,6 @@ import { io } from "socket.io-client";
 import ConsoleEmulator from "react-console-emulator";
 import Terminal from "./Terminal";
 
-
 const Ide = () => {
   const defaultCodeSnippet = {
     python: "# Start your Python scripting ",
@@ -12,23 +11,13 @@ const Ide = () => {
     c: "#include<stdio.h>\n\nint main()\n{\n\treturn 0\n}",
   };
 
-  const commands = {
-    echo: {
-      description: "Echo a passed string.",
-      usage: "echo <string>",
-      fn: (...args) => args.join(" "),
-    },
-   
-
+  const userCommands = {
     about: {
       description: "To know about us ...",
       fn: () =>
         "<<<<<<<<<<<<<<<<<<this is online code editor for developer and creater >>>>>>>>>>>>>>>>>>>>>>\n<<<<<<<<<<<<<<<<.............................................................>>>>>>>>>>>>>>>>",
     },
-    
-
   };
-  
 
   const editorRef = useRef();
   const [language, setLanguage] = useState("java");
@@ -38,7 +27,7 @@ const Ide = () => {
   const [clientId, setClientId] = useState(null);
   const [newText, setNewText] = useState("");
   const [inputText, setInputText] = useState("");
-
+  const [userInput, setUserInput] = useState("first user nput ");
   const socket = io("http://localhost:3001");
 
   const generateUniqueId = () => {
@@ -51,8 +40,6 @@ const Ide = () => {
   useEffect(() => {
     setClientId(generateUniqueId());
   }, []);
-
-  
 
   useEffect(() => {
     console.log("HAI");
@@ -79,6 +66,8 @@ const Ide = () => {
       arg: "1",
       code: currentCode,
     };
+    setOutput(userInput);
+    console.log(userInput);
     socket.emit("javacode", emitcode);
     console.log("running ");
   };
@@ -93,11 +82,7 @@ const Ide = () => {
     setCurrentCode(newCode);
   };
 
-  const handleterminal = (e) => {
-    console.log(inputText+"nkn");
-    setNewText(`${newText}\nUser Input: ${e}`);
-    setInputText("");
-  };
+ 
 
   return (
     <div className="Ide-boxM">
@@ -117,11 +102,21 @@ const Ide = () => {
         theme="vs-dark"
         onMount={(editor, monaco) => {
           editorRef.current = editor;
-        }}  
+        }}
         onChange={handleChange}
       />
-      <Terminal/>
-      
+      <div className="the">
+      <Terminal
+        mode={"user"}
+        setUserInput={setUserInput}
+        userOutput={output}
+        userCommand={userCommands}
+        textColor="white"
+        promtColor="#e3a759"
+        promtText="Server$ "
+      />
+
+        </div>
     </div>
   );
 };
